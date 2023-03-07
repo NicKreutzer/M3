@@ -30,5 +30,3 @@ http.createServer((req, res) => {
 
     res.writeHead(404, {"Content-type" : "text/plain"}).end("Route not found")
 }).listen(PORT, 'localhost');
-
-//! localhost:3001/api => api de perros.
