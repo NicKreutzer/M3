@@ -19,40 +19,60 @@ args.forEach(function (arg) {
 
 function problemA() {
   //! Callback version:
-  // exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
-  //   exerciseUtils.blue(stanza);
-  // });
-  // exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
-  //   exerciseUtils.blue(stanza);
-  // });
+  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
+    exerciseUtils.blue(stanza);
+  });
+  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
+    exerciseUtils.blue(stanza);
+  });
 
   //! Promise version:
-  // Tu código acá:
+  exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
+  .then(stanza1 => exerciseUtils.blue(stanza1))
+  exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  .then(stanza2 => exerciseUtils.blue(stanza2))
 }
 
 function problemB() {
-  let filenames = [1, 2, 3, 4, 5, 6, 7, 8].map(function (n) {
-    return "poem-two/" + "stanza-0" + n + ".txt";
+  let filenames = [1, 2, 3, 4, 5, 6, 7, 8].map(function (n) {   //! .map retorna un array 
+    return "poem-two/" + "stanza-0" + n + ".txt";               //! ['poem-two/stanza-01.text', 'poem-two/stanza-02.text', ....]
   });
   let randIdx = Math.floor(Math.random() * filenames.length);
   filenames[randIdx] = "wrong-file-name-" + (randIdx + 1) + ".txt";
 
   //! Callback version:
-  // filenames.forEach((filename) => {
-  //   exerciseUtils.readFile(filename, function (err, stanza) {
-  //     exerciseUtils.blue(stanza);
-  //     if (err) exerciseUtils.magenta(new Error(err));
-  //   });
-  // });
+  filenames.forEach((filename) => {
+    exerciseUtils.readFile(filename, function (err, stanza) {
+      exerciseUtils.blue(stanza);
+      if (err) exerciseUtils.magenta(new Error(err));
+    });
+  });
 
   //! Promise version:
-  // Tu código acá:
+  filenames.forEach(file =>
+    exerciseUtils.promisifiedReadFile(file)
+    .then(stanza => exerciseUtils.blue(stanza))
+    .catch(err => exerciseUtils.magenta(new Error(err)))
+    )
+    //* Promise.all(filenames)
+    //* .then(stanza => exerciseUtils.blue(stanza))
+    //* .catch(err => exerciseUtils.magenta(new Error(err)))
 }
 
 // EJERCICIO EXTRA
+
 function problemC() {
   let fs = require("fs");
+
   function promisifiedWriteFile(filename, str) {
-    // tu código acá:
+    return new Promise((resolve, reject) => {
+      fs.writeFile(filename, str, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   }
 }

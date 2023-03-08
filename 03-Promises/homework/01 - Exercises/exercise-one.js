@@ -20,12 +20,12 @@ args.forEach(function (arg) {
 
 function problemA() {
   //! Callback version:
-  // exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza2) {
-  //   exerciseUtils.blue(stanza2);
-  //   exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
-  //     exerciseUtils.blue(stanza3);
-  //   });
-  // });
+  exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza2) {
+    exerciseUtils.blue(stanza2);
+    exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
+      exerciseUtils.blue(stanza3);
+    });
+  });
 
   //! Promise version:
   exerciseUtils.promisifiedReadFile("poem-one/stanza-02.txt")
@@ -36,13 +36,13 @@ function problemA() {
 
 function problemB() {
   //! Callback version:
-  // exerciseUtils.readFile(
-  //   "poem-one/wrong-file-name.txt",
-  //   function (err, stanza4) {
-  //     if (err) exerciseUtils.magenta(new Error(err));
-  //     else exerciseUtils.blue(stanza4);
-  //   }
-  // );
+  exerciseUtils.readFile(
+    "poem-one/wrong-file-name.txt",
+    function (err, stanza4) {
+      if (err) exerciseUtils.magenta(new Error(err));
+      else exerciseUtils.blue(stanza4);
+    }
+  );
 
   //! Promise version:
   exerciseUtils.promisifiedReadFile("poem-one/wrong-file-name.txt")
@@ -52,17 +52,17 @@ function problemB() {
 
 function problemC() {
   //! Callback version:
-  // exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
-  //   if (err) return exerciseUtils.magenta(new Error(err));
-  //   exerciseUtils.blue(stanza3);
-  //   exerciseUtils.readFile(
-  //     "poem-one/wrong-file-name.txt",
-  //     function (err2, stanza4) {
-  //       if (err2) return exerciseUtils.magenta(new Error(err2));
-  //       exerciseUtils.blue(stanza4);
-  //     }
-  //   );
-  // });
+  exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
+    if (err) return exerciseUtils.magenta(new Error(err));
+    exerciseUtils.blue(stanza3);
+    exerciseUtils.readFile(
+      "poem-one/wrong-file-name.txt",
+      function (err2, stanza4) {
+        if (err2) return exerciseUtils.magenta(new Error(err2));
+        exerciseUtils.blue(stanza4);
+      }
+    );
+  });
 
   //! Promise version:
   exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt")
@@ -72,7 +72,7 @@ function problemC() {
   })
   .then(stanza4 => exerciseUtils.blue(stanza4))
   .catch(err => exerciseUtils.magenta(new Error(err)))
-  
+
   //? exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt")
   //? .then(stanza3 => exerciseUtils.blue(stanza3))
   //? .catch(err => exerciseUtils.magenta(new Error(err)))
