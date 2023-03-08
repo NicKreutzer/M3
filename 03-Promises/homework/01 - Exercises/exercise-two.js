@@ -18,15 +18,15 @@ args.forEach(function (arg) {
 });
 
 function problemA() {
-  // callback version
-  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
-  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
+  //! Callback version:
+  // exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
+  // exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
 
-  // promise version
+  //! Promise version:
   // Tu código acá:
 }
 
@@ -37,15 +37,15 @@ function problemB() {
   let randIdx = Math.floor(Math.random() * filenames.length);
   filenames[randIdx] = "wrong-file-name-" + (randIdx + 1) + ".txt";
 
-  // callback version
-  filenames.forEach((filename) => {
-    exerciseUtils.readFile(filename, function (err, stanza) {
-      exerciseUtils.blue(stanza);
-      if (err) exerciseUtils.magenta(new Error(err));
-    });
-  });
+  //! Callback version:
+  // filenames.forEach((filename) => {
+  //   exerciseUtils.readFile(filename, function (err, stanza) {
+  //     exerciseUtils.blue(stanza);
+  //     if (err) exerciseUtils.magenta(new Error(err));
+  //   });
+  // });
 
-  // promise version
+  //! Promise version:
   // Tu código acá:
 }
 
