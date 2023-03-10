@@ -50,7 +50,11 @@ class $Promise{
             //! Si esto es true             y esto es true               se ejecuta esto.
             this._state === 'rejected' && currentHandler.errorCb && currentHandler.errorCb(value)
         }
-    }
+    };
+
+    catch(errorHandler){
+        this.then(null, errorHandler)
+    };
 };
 
 
