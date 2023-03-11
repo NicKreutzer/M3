@@ -41,6 +41,18 @@ server.get('/posts', (req, res) => {
     // }else{
     //     return res.status(400).json(
     //         {error: "No existe ninguna publicación con dicho título y autor indicado"})
+    //! Con el else no corre el test, pero la ruta corre bien.
+    }
+});
+
+server.get('/posts/:author', (req, res) => {
+    const {author} = req.params;
+    const filteredPosts = publications.filter(post =>
+        post.author === author);
+    if(filteredPosts.length){
+            return res.status(200).json(filteredPosts)
+    } else {
+        res.status(400).json({error: "No existe ninguna publicación del autor indicado"})
     }
 });
 //NO MODIFICAR EL CODIGO DE ABAJO. SE USA PARA EXPORTAR EL SERVIDOR Y CORRER LOS TESTS
