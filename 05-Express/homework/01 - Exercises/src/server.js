@@ -71,6 +71,7 @@ server.get('/posts/:author', (req, res) => {
 server.put('/posts/:id', (req, res) => {
     const {id} = req.params;
     const {title, contents} =  req.body;
+
     if(title && contents && id){
         const publicationId = publications.find(post => post.id === Number(id))
         !publicationId
@@ -83,6 +84,21 @@ server.put('/posts/:id', (req, res) => {
     }else{
         return res.status(400).json({error: "No se recibieron los parámetros necesarios para modificar la publicación"})
     }
-})
+});
+
+server.delete('/posts/:id', (req, res) => {
+    const {id} = req.params;
+
+    if(!id){
+        return res.status(400).json({error: "No se recibió el id de la publicación a eliminar"})
+    } else {
+        let filteredPublications = publications.filter(post => post.id !== Number(id))
+        if(publications.length === filteredPublications.length){
+            return res.status(400).json({error: "No se recibió el id correcto necesario para eliminar la publicación"})
+        }
+        publications = filteredPublications;
+        res.status(200).json({success: true})
+    }
+});
 //NO MODIFICAR EL CODIGO DE ABAJO. SE USA PARA EXPORTAR EL SERVIDOR Y CORRER LOS TESTS
 module.exports = { publications, server };
