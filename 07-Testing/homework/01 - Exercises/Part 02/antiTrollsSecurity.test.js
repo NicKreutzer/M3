@@ -10,5 +10,25 @@ describe('PARTE 02', () => {
             'Wht r y,  cmmnst?'
          );
       });
+      it('Debe devolver el mismo string pero habiendo eliminado todas las vocales', () => {
+         expect(antiTrollsSecurity('Probando uno dos.')).toBe(
+            'Prbnd n ds.');
+      })
+      it('Debe devolver el mismo string pero habiendo eliminado todas las vocales', () => {
+         expect(antiTrollsSecurity('Testeando tres cuatro.')).toBe(
+            'Tstnd trs ctr.');
+      })
+      it('Debe devolver el mismo string pero habiendo eliminado todas las vocales', () => {
+         expect(antiTrollsSecurity('Cualquier cosa aca.')).toBe(
+            'Clqr cs c.');
+      })
+      it('Debe devolver el mismo string pero habiendo eliminado todas las vocales', () => {
+         expect(antiTrollsSecurity('Aca tambien hay cualquier cosa.')).toBe(
+            'c tmbn hy clqr cs.');
+      })
+      it('Debe devolver el mismo string pero habiendo eliminado todas las vocales', () => {
+         expect(antiTrollsSecurity('Why so serious.')).toBe(
+            'Why s srs.');
+      })
    });
 });
