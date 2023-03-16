@@ -10,6 +10,10 @@ const levelTwo = (letras) => {
         }
         return letra.join('');
     }
+    // return letras
+    // .split('')
+    // .filter((letter, i) => i % 2 === 0)
+    // .join('');
 };
 
 const levelThree = (a, b) => [...a, ...b].sort();
